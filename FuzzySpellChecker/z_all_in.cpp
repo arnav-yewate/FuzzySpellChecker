@@ -7,7 +7,7 @@
 #include <numeric>
 #include <chrono>
 
-// 1. The Trie Node Structure
+
 class TrieNode
 {
 public:
@@ -18,14 +18,14 @@ public:
     TrieNode() : isEndOfWord(false) {}
 };
 
-// 2. The Autocomplete Engine
+
 class Fuzzyspellchecker
 {
 private:
     TrieNode *root;
     int maxEdits; // The maximum number of typos allowed
 
-    // The Recursive DFS + Dynamic Programming Function
+    // The Recursive DFS + DP Function
     void searchRecursive(TrieNode *node, const std::string &target, const std::vector<int> &previousRow, std::vector<std::pair<int, std::string>> &results)
     {
         int columns = target.length() + 1;
@@ -103,7 +103,7 @@ public:
         // Sort the results so the lowest edit distance comes first
         std::sort(pairedResults.begin(), pairedResults.end());
 
-        // Extract just the words to send back to the user
+        // Extract just the words to send back 
         std::vector<std::string> finalResults;
         for (const auto &pair : pairedResults)
         {
@@ -114,7 +114,7 @@ public:
     }
 };
 
-// 3. The Main Execution File
+
 int main()
 {
     // Initialize engine with a maximum of 2 typos allowed
@@ -129,7 +129,7 @@ int main()
         return 1;
     }
 
-    // ── BENCHMARK 1: Dictionary Loading ──────────────────────
+    //BENCHMARK 1: Dictionary Loading
     std::cout << "Loading dictionary into the Trie...\n";
 
     auto loadStart = std::chrono::high_resolution_clock::now();
@@ -148,7 +148,7 @@ int main()
     std::cout << "Words loaded: " << wordCount << "\n";
     std::cout << "Load time: " << loadDuration.count() << " ms\n\n";
 
-    // ── BENCHMARK 2: Search Query ────────────────────────────
+    //  BENCHMARK 2: Search Query 
     std::string searchTarget;
     std::cout << "Enter a word to search (try making a typo): ";
     std::cin >> searchTarget;

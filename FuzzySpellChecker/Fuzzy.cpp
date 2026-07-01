@@ -1,6 +1,6 @@
 #include "Fuzzy.h"
 
-// The Recursive DFS + Dynamic Programming Function
+// The Recursive DFS + DP Function
 void Fuzzyspellchecker:: searchRecursive(TrieNode *node, const std::string &target, const std::vector<int> &previousRow, std::vector<std::pair<int, std::string>> &results)
 {
     int columns = target.length() + 1;
@@ -75,7 +75,7 @@ std::vector<std::string> Fuzzyspellchecker:: search(const std::string &target)
     // Sort the results so the lowest edit distance comes first
     std::sort(pairedResults.begin(), pairedResults.end());
 
-    // Extract just the words to send back to the user
+    // Extract just the words to send back
     std::vector<std::string> finalResults;
     for (const auto &pair : pairedResults)
     {
